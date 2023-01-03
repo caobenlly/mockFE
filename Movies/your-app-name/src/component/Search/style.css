@@ -1,0 +1,9 @@
+.failed {
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.image-size{
+    height: auto;
+    width: 100%;
+  }
