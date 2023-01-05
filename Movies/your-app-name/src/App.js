@@ -8,6 +8,7 @@ import Trending from './component/Page/Trending';
 import Comedy from './component/Page/Comedy';
 import Footer from './component/Page/Footer';
 import Search from './component/Search/Search';
+import Layout from './component/Layout/Layout';
 import DetailMovie from './component/DetailMovie/DetailMovie';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
@@ -72,6 +73,9 @@ function App() {
         <Route path="/comedy/:id" element={<DetailMovie movie={MovieDetail} />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/search/:id"element={<DetailMovie movie={MovieDetail} />}></Route>
+        <Route path="/login" element={<Layout page={1}/>}></Route>
+        <Route path="/signup" element={<Layout page={2} />}></Route>
+        <Route path="/forgot-password" element={<Layout page={3} />}></Route>
       </Routes>
       <Footer />
     </div>
