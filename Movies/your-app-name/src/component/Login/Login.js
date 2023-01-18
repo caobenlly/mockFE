@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
+    wrapperCol: { span: 16 },
 }
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
