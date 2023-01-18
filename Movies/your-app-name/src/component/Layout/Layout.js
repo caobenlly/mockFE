@@ -1,22 +1,20 @@
 import React from 'react'
 import LoginPage from '../Login/Login'
 import FG from '../Login/ForgotPass'
-import SignUp from '../Login/SignUp'
+import SignUp from '../Login/SignUp/SignUp'
+import EmailVerify from '../Login/SignUp/EmailVerify'
 const LayoutLogin = ({ page }) => {
     return (
         <div>
             <div className="bg-black w-full h-screen flex justify-center items-center">
-                <div className="w-5/6 h-5/6 bg-white rounded-2xl flex">
-                    <div className="w-2/4 flex items-center justify-center border-r-2 border-gray-200 my-5">
-                        <img
-                            src="https://assets.topdev.vn/images/2021/05/19/6764a7070cdc6a69bd1f6b4f588871a7-SqYcD.png"
-                            alt=""
-                            className="w-[500px] h-[150px]"
-                        />
-                    </div>
+                <div className="w-full h-5/6 rounded-2xl flex justify-center items-center bg-contain"
+                    style={{
+                        backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-film-scene-film-background-image_190374.jpg")`,
+                    }}>
+
                     {/* The slot element is replaced with children in React */}
                     {
-                       page == 1 ? (< LoginPage />): page == 2 ? (< SignUp />) : (< FG />)
+                        page === 1 ? (< LoginPage />) : page === 2 ? (< SignUp />) : page === 3 ? (< FG />) : (< EmailVerify />)
                     }
                 </div>
             </div>

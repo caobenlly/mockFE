@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Header(props) {
 const navLinkActive = ({ isActive }) => ({
@@ -20,7 +20,7 @@ const handleSearch = () => {
 }
 
   return (
-    <div className="w-full h-24 bg-black flex items-center justify-around">
+    <div className="w-full h-24 bg-black flex items-center justify-around shadow-lg shadow-white">
       <div
         style={{ width: "280px" }}
         className="flex flex-start justify-center h-20 pl-5"
