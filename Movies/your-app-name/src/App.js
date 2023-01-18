@@ -76,6 +76,7 @@ function App() {
         <Route path="/login" element={<Layout page={1}/>}></Route>
         <Route path="/signup" element={<Layout page={2} />}></Route>
         <Route path="/forgot-password" element={<Layout page={3} />}></Route>
+        <Route path="/email-verify" element={<Layout page={4} />}></Route>
       </Routes>
       <Footer />
     </div>

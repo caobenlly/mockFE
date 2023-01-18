@@ -1,7 +1,7 @@
-import React, { Children, useState } from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Checkbox, Button } from 'antd'
-import axios from 'axios'
-import LayoutLogin from '../Layout/Layout'
+import httpRequest from '../../utils/httpRequest'
+import { Link, useNavigate } from 'react-router-dom'
 
 const layout = {
     labelCol: { span: 8 },
@@ -12,6 +12,8 @@ const tailLayout = {
 }
 
 const LoginPage = () => {
+    let navigate = useNavigate()
+
     const [form] = Form.useForm()
     const [formState, setFormState] = useState({
         email: '',
@@ -20,11 +22,15 @@ const LoginPage = () => {
     })
 
     const onFinish = async (values) => {
+        console.log(values)
         try {
-            const res = await axios.post('/user/login', values)
-            localStorage.setItem('tokenLogin', res.data.token)
-        } catch (err) {
-            alert(err)
+            const res = await httpRequest.post('/user/login', values)
+            navigate('/')
+            if (formState.remember) {
+                localStorage.setItem('userToken', res.data.token)
+            }
+        } catch {
+            alert('Có lỗi xảy ra. Vui lòng thử lại')
         }
     }
 
@@ -33,15 +39,15 @@ const LoginPage = () => {
     }
 
     return (
-        <div class="w-2/4 h-full flex items-center justify-center">
-            <div class="">
-                <h1 class="text-6xl text-blue-900 text-center">Todo Application</h1>
-                <h1 class="text-6xl mb-14 text-blue-600 text-center">Login</h1>
-                <div class="">
+        <div className="w-2/4 h-full flex items-center justify-center">
+            <div>
+                <h1 className="text-6xl text-blue-900 text-center">Todo Application</h1>
+                <h1 className="text-6xl mb-8 text-blue-600 text-center">Login</h1>
+                <div>
                     <div className='flex justify-end p-5'>
-                        <a className="ml-5 " href="/signup">
+                        <Link className="ml-5 hover:text-[#ff4d4f]" to="/signup">
                             SignUp
-                        </a>
+                        </Link>
                     </div>
                     <Form
                         {...layout}
@@ -71,21 +77,17 @@ const LoginPage = () => {
                             />
                         </Form.Item>
 
-                        <div>
+                        <Form.Item name="remember" valuePropName="checked" {...tailLayout}>
+                            <Checkbox checked={formState.remember} onChange={(e) => setFormState({ ...formState, remember: e.target.checked })}>
+                                Remember me
+                            </Checkbox>
+                            <Link className="ml-5 hover:text-[#ff4d4f]" to="/forgot-password">
+                                Forgot password?
+                            </Link>
+                        </Form.Item>
 
-                            <Form.Item name="remember" valuePropName="checked" {...tailLayout}>
-                                <Checkbox checked={formState.remember} onChange={(e) => setFormState({ ...formState, remember: e.target.checked })}>
-                                    Remember me
-                                </Checkbox>
-                                <a className="ml-5" href="/forgot-password">
-                                    Forgot password?
-                                </a>
-
-                            </Form.Item>
-
-                        </div>
                         <Form.Item {...tailLayout}>
-                            <Button type="primary" htmlType="submit" className="w-32 bg-blue-500">
+                            <Button type="primary" danger htmlType="submit" className="w-full text-xl h-10">
                                 Login
                             </Button>
                         </Form.Item>
